@@ -104,32 +104,31 @@ if uploaded_file is not None:
     st.subheader("Compressed Image")
     compressed_img = image.resize((256, 256), Image.LANCZOS)  # Compress to smaller size
     st.image(compressed_img, caption="Compressed Image (256x256)", use_container_width=True)
-
     # Download option
-buf = io.BytesIO()
-# Determine whether to resize
-width, height = image.size
-if width > 256 or height > 256:
-    compressed_img = image.resize((256, 256), Image.LANCZOS)
-else:
-    compressed_img = image.copy()  # keep original size if already small
-    # Choose format based on original size / simplicity
-    if width <= 256 or height <= 256:
-        # Small/simple image → keep PNG
-        compressed_img.save(buf, format="PNG", optimize=True)
-        file_name = "compressed_image.png"
-        mime_type = "image/png"
+    buf = io.BytesIO()
+    # Determine whether to resize
+    width, height = image.size
+    if width > 256 or height > 256:
+        compressed_img = image.resize((256, 256), Image.LANCZOS)
     else:
-        # Larger image → use JPEG for smaller file size
-        compressed_img.save(buf, format="JPEG", quality=50)
-        file_name = "compressed_image.jpg"
-        mime_type = "image/jpeg"
-        buf.seek(0)  # move pointer to start of buffer
-        # Step 4: Download button
-    st.download_button(
-        label="Download Compressed Image",
-        data=buf,
-        file_name=file_name,
-        mime=mime_type
-    )
+        compressed_img = image.copy()  # keep original size if already small
+    # Choose format based on original size / simplicity
+        if width <= 256 or height <= 256:
+            # Small/simple image → keep PNG
+            compressed_img.save(buf, format="PNG", optimize=True)
+            file_name = "compressed_image.png"
+            mime_type = "image/png"
+        else:
+            # Larger image → use JPEG for smaller file size
+            compressed_img.save(buf, format="JPEG", quality=50)
+            file_name = "compressed_image.jpg"
+            mime_type = "image/jpeg"
+            buf.seek(0)  # move pointer to start of buffer
+            # Step 4: Download button
+        st.download_button(
+            label="Download Compressed Image",
+            data=buf,
+            file_name=file_name,
+            mime=mime_type
+        )
 
