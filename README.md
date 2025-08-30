@@ -7,3 +7,4 @@ This Streamlit app allows you to:
 - Download the compressed image
 
 Hosted on Streamlit Cloud!
+Link: https://image-compression-and-analysis-model-gzkrzlzmowngka9ye9zgff.streamlit.app/
