@@ -125,10 +125,11 @@ if uploaded_file is not None:
             mime_type = "image/jpeg"
             buf.seek(0)  # move pointer to start of buffer
             # Step 4: Download button
-        st.download_button(
-            label="Download Compressed Image",
-            data=buf,
-            file_name=file_name,
-            mime=mime_type
-        )
+    st.download_button(
+        label="Download Compressed Image",
+        data=buf,
+        file_name=file_name,
+        mime=mime_type
+    )
+    
 
