@@ -102,8 +102,8 @@ if uploaded_file is not None:
     # Compression Option
     # -----------------------------
     st.subheader("Compressed Image")
-    compressed_img = image.resize((256, 256), Image.LANCZOS)  # Compress to smaller size
-    st.image(compressed_img, caption="Compressed Image (256x256)", use_container_width=True)
+    compressed_img = image.resize((512, 512), Image.LANCZOS)  # Compress to smaller size
+    st.image(compressed_img, caption="Compressed Image (512x512)", use_container_width=True)
 
     # Download option
     buf = io.BytesIO()
