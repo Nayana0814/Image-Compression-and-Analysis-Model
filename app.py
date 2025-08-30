@@ -107,9 +107,12 @@ if uploaded_file is not None:
 
     # Download option
     buf = io.BytesIO()
-    compressed_img.save(buf, format="PNG")
-    byte_im = buf.getvalue()
-    st.download_button(label="Download Compressed Image",
-                       data=byte_im,
-                       file_name="compressed_image.png",
-                       mime="image/png")
+    compressed_img.save(buf, format="JPEG", quality=50)  # quality 50 gives good balance
+    buf.seek(0)  # move pointer to start of buffer
+    # Step 4: Download button
+    st.download_button(
+        label="Download Compressed Image",
+        data=buf,
+        file_name="compressed_image.jpg",
+        mime="image/jpeg"
+    )
